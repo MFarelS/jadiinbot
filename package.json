@@ -21,6 +21,6 @@
     "sequelize": "^6.6.5",
     "socket.io": "^4.2.0",
     "sqlite3": "^5.0.2",
-    "wa-sticker-formatter": "^2.8.0"
+    "wa-sticker-formatter": "2.8.0"
   }
 }
