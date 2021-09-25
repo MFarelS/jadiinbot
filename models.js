@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize')
-const sequelize = new Sequelize('sqlite:///home/salism3/projects/jadiinbot/db.sqlite3')
+const sequelize = new Sequelize('sqlite:///' + __dirname + '/db.sqlite3')
 
 // const User = sequelize.define('main_user', {
 //     id: {
