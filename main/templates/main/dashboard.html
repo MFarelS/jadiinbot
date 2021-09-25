@@ -1,0 +1,36 @@
+{% extends 'main/layouts/base.html' %}
+
+{% block content %}
+<center>
+    <img id="qr"><br>
+    <button class="btn btn-primary" id="connect">Connect</button>
+</center>
+{% endblock%}
+
+{% block script %}
+<script>
+    const socket = io('{{SERVER_URL}}', {
+        transports: [
+            'websocket',
+            'polling',
+            'flashsocket',
+        ]
+    });
+
+    $('#connect').on('click', () => {
+        const element = $('#connect');
+        element.addClass('visually-hidden');
+        socket.emit('make_connection', '{{session_id}}');
+    });
+
+    socket.on('qr', (qr) => {
+        $('#qr').attr('src', qr);
+    });
+
+    socket.on('open', () => {
+        setTimeout(() => {
+            window.location.reload()
+        }, 3000)
+    })
+</script>
+{% endblock %}

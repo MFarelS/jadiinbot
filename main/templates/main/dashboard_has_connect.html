@@ -1,0 +1,28 @@
+{% extends 'main/layouts/base.html' %}
+
+{% block content %}
+<center>
+    <span>Nama: {{name|escape}}</span><br>
+    <span>Device: {{phone.device_manufacturer}}</span><br>
+    <button class="btn btn-danger" id="disconnect">Disconnect</button>
+</center>
+{% endblock%}
+
+{% block script %}
+<script>
+    const socket = io('{{SERVER_URL}}', {
+        transports: [
+            'websocket',
+            'polling',
+            'flashsocket',
+        ]
+    });
+
+    $('#disconnect').on('click', () => {
+        const element = $('#disconnect');
+        element.addClass('visually-hidden')
+        socket.emit('close_connection', '{{session_id}}')
+    })
+
+</script>
+{% endblock %}

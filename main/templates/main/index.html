@@ -1,0 +1,20 @@
+{% extends 'main/layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    {% if error_msg %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_msg }}
+    </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" class="form-control mb-2" name="username" placeholder="Username">
+        <input type="password" class="form-control mb-2" name="password" placeholder="Password">
+        <center>
+            <button class="btn btn-primary">Login</button>
+            <p>Belum punya akun? daftar <a href="{% url 'register' %}">disini</a></p>
+        </center>
+    </form>
+</div>
+{% endblock %}
